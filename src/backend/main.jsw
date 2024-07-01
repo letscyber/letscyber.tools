@@ -1,0 +1,116 @@
+import { generateIncidentResponsePlan } from 'backend/generateIncidentResponsePlan';
+import { createPDF } from 'backend/createPDF';
+import { HTML_TEMPLATE } from 'backend/htmlTemplate';
+
+// Gets today's date and time
+const today = new Date();
+const day = String(today.getDate()).padStart(2, '0');
+const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June', 
+    'July', 'August', 'September', 'October', 'November', 'December'
+];
+const month = monthNames[today.getMonth()];
+const year = today.getFullYear();
+const formattedDate = `${month} ${day}, ${year}`;
+
+// Function to handle form submission and generate download link
+export async function handleFormSubmission(userData) {
+    // Validate input data
+    if (!userData.Email) {
+        console.error('User data validation failed: email is required');
+        return { success: false, error: 'Email is required' };
+    }
+
+    // Step 1: Get the logo URL from user input (assuming it's provided in userData)
+
+    try {
+        // Step 2: Generate incident response plan
+        const incidentResponsePlan = await generateIncidentResponsePlan(userData);
+
+        // Step 3: Format the response with HTML tags for better readability
+        const formattedResponse = formatResponseAsHTML(incidentResponsePlan);
+
+        // Step 4: Split the response into pages
+        const pages = splitContentToPages(formattedResponse, 1900); // Adjust maxLength as needed
+
+        // Step 5: Create HTML content for each page
+        const planDetailsPages = pages.map(page => `<div class="page content page-break">
+            <div class="header-container">
+                <div class="header-bottom">
+                    <i class="fas fa-cogs"></i>
+                    <h2 class="section-title">Plan Details</h2>
+                </div>
+            </div>
+            ${page}
+        </div>`).join('');
+
+        // Step 6: Replace placeholders in the HTML template with user data and logo URL
+        const htmlContent = HTML_TEMPLATE
+            .replace('${formattedDate}', formattedDate)
+            .replace('{{userName1}}', userData.Company)
+            .replace('{{userName2}}', userData.Company)
+            .replace('{{userName3}}', userData.Company)
+            .replace('{{userName4}}', userData.Company)
+            .replace('{{userName5}}', userData.Company)
+            .replace('{{userName6}}', userData.Company)
+            .replace('{{CompanyName}}', userData.Company)
+            .replace('{{CompanyName2}}', userData.Company)
+            .replace('{{CompanyName8}}', userData.Company)
+            .replace('{{CompanyName9}}', userData.Company)
+            .replace('{{CompanyName10}}', userData.Company)
+            .replace('{{CompanyName11}}', userData.Company)
+            .replace('{{CompanyName12}}', userData.Company)
+            .replace('{{Email}}', userData.Email)
+            .replace('{{IndustryType}}', userData.Industry)
+            .replace('{{NumOfEmp}}', userData.NumberOfEmployees)
+            .replace('{{TypesOfData}}', userData.TypeOfData)
+            .replace('{{TopRisk}}', userData.TopRisks)
+            .replace('{{incidentDetailsPages}}', planDetailsPages);
+
+        // Step 7: Create PDF
+        const pdfUrl = await createPDF(htmlContent);
+
+        // Step 8: Return download link
+        return { success: true, downloadLink: pdfUrl };
+    } catch (error) {
+        console.error('Error handling form submission:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// Helper function to format the response as HTML
+function formatResponseAsHTML(response) {
+    // Use regular expressions to add HTML tags for better formatting
+    let formattedResponse = response
+        .replace(/```html|```/g, '') // Remove ```html markers
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold for strong emphasis
+        .replace(/Overview:/g, '<h3>Overview</h3>')
+        .replace(/Key Considerations:/g, '<h3>Key Considerations</h3>')
+        .replace(/Recommendations:/g, '<h3>Recommendations</h3>')
+        .replace(/-\s/g, '<ul><li>') // Add <ul><li> tags for bullet points
+        .replace(/<\/li><li>/g, '</li><li>') // Close <li> and <ul> tags properly
+        .replace(/<\/ul><ul>/g, '') // Remove unnecessary closing and opening <ul> tags
+        .replace(/<\/h4><br>/g, '</h4>') // Remove unnecessary <br> after <h4>
+        .replace(/<\/p><br>/g, '</p>'); // Remove unnecessary <br> after <p>
+
+    return formattedResponse;
+}
+
+// Helper function to split content into pages
+function splitContentToPages(content, maxLength) {
+    const pages = [];
+    let currentPage = '';
+    const lines = content.split('\n');
+
+    for (const line of lines) {
+        if ((currentPage.length + line.length) > maxLength) {
+            pages.push(currentPage);
+            currentPage = '';
+        }
+        currentPage += line + '\n';
+    }
+    if (currentPage) {
+        pages.push(currentPage);
+    }
+    return pages;
+}

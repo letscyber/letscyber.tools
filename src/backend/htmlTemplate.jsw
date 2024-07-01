@@ -1,0 +1,404 @@
+// htmlTemplate.js
+export const HTML_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incident Response Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            counter-reset: page;
+            margin: 0;
+            padding: 0;
+            size: A4;
+            background-color: #f4f4f4;
+        }
+        .page {
+            position: relative;
+            page-break-after: always;
+            padding: 40px;
+            height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            box-sizing: border-box;
+            background: url('https://static.wixstatic.com/media/2d2cfc_99bc519a5ca944989e721858a195942f~mv2.png') no-repeat center center;
+            background-size: cover;
+            color: #ffffff;
+        }
+        .cover-page img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .cover-page h1 {
+            font-size: 48px;
+            color: #ffffff;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+        .cover-page h2 {
+            font-size: 24px;
+            color: #0ABAB5;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+        .cover-page p {
+            font-size: 18px;
+            color: #ffffff;
+            margin: 10px 0;
+            font-weight: 400;
+        }
+        .cover-page .tagline {
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+        .cover-page .date {
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 10px;
+            color: #ffffff;
+        }
+        .toc-page, .intro-page, .companyinfo-page, .content, .conc-page, .references-page {
+            padding: 40px;
+            box-sizing: border-box;
+            flex: 1;
+        }
+        .header-container {
+            background-color: #e8f6f6;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .header-bottom {
+            display: flex;
+            align-items: center;
+        }
+        .header-bottom i {
+            font-size: 28px;
+            color: #0ABAB5;
+            margin-right: 10px;
+        }
+        .header-bottom h2 {
+            margin: 0;
+            font-weight: 700;
+            color: #0ABAB5;
+            font-size: 32px;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #0ABAB5;
+            margin: 10px 0;
+        }
+        .toc-page ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .toc-page ul li {
+            margin: 20px 0;
+            font-size: 22px;
+        }
+        .toc-page ul li a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 5px;
+        }
+        .toc-page ul li a:hover {
+            color: #ffffff;
+            background-color: #0ABAB5;
+        }
+        .toc-page ul li a i {
+            margin-right: 15px;
+            color: #0ABAB5;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        .toc-page ul li a:hover i {
+            color: #ffffff;
+        }
+        .intro-page p, .conc-page p, .toc-page p, .references-page p {
+            text-align: justify;
+        }
+        .intro-page img {
+            display: block;
+            margin: 0;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .conc-page img {
+            display: block;
+            margin: 20px auto;
+            max-width: 650px;
+            border-radius: 10px;
+        }
+        h1, h2, h3 {
+            color: #0ABAB5;
+            font-weight: 800;
+        }
+        p {
+            font-size: 17.5px;
+            line-height: 1.3;
+            margin: 10px 0;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        ul, ol {
+            margin-left: 20px;
+            line-height: 1.4;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .footer {
+            margin-top: auto;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #0ABAB5;
+            padding-top: 10px;
+        }
+        .highlight {
+            font-weight: bold;
+        }
+        .abstract-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .abstract-text {
+            width: 60%;
+        }
+        .abstract-image {
+            width: 37%;
+            text-align: right;
+        }
+        .abstract-image img {
+            max-width: 110%;
+            border-radius: 10px;
+        }
+        .toc-page .toc-image {
+            position: absolute;
+            bottom: 90px;
+            right: 20px;
+            max-width: 350px;
+            border-radius: 10px;
+        }
+
+        .introimg {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 150%;
+        }
+
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const date = new Date().toLocaleDateString();
+            const pages = document.querySelectorAll('.page:not(.cover-page)');
+            pages.forEach((page, index) => {
+                const footer = document.createElement('div');
+                footer.className = 'footer';
+                footer.innerHTML = \`<span>Page \${index + 2}</span><span>\${date}</span>\`;
+                page.appendChild(footer);
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="page cover-page">
+        <img src="https://static.wixstatic.com/shapes/2d2cfc_45ccf8c405504ac98c37489a4e4b099a.svg" alt="IRP" />
+        <h1>Incident Response Plan</h1>
+        <h2>Preparation Phase</h2>
+        <p><strong>Generated for:</strong> {{userName1}}</p>
+        <p class="tagline">Ensuring Preparedness and Resilience Against Cyber Threats</p>
+        <p class="date"><strong>\${formattedDate} | Version 1.0</strong></p>
+    </div>
+
+    <!-- Abstract Page -->
+    <div class="page toc-page">
+        <h5>{{userName2}} Cyber Incident Response Plan</h5>
+        <hr>
+        <div class="header-container">
+            <div class="header-bottom">
+                <i class="fas fa-book-open"></i>
+                <h2>Abstract</h2>
+            </div>
+        </div>
+        <div class="abstract-container">
+            <div class="abstract-text">
+                <p>In today's interconnected and technology-driven world, businesses face an ever-growing risk of cyber incidents that can disrupt operations, compromise sensitive data, and damage reputations. Effective preparation is critical for mitigating these risks by providing a structured approach to detecting, responding to, and recovering from security breaches.</p>
+                <p>This document outlines the <strong>Preparation phase</strong> of a comprehensive Incident Response Plan (IRP) tailored for <strong>{{CompanyName8}}</strong>, designed to enhance preparedness and resilience against cyber threats. The Preparation phase is foundational, detailing proactive measures to identify potential threats, establish robust protocols, and train employees to respond effectively.</p>
+                <p>Key components of this phase include conducting a thorough risk assessment, developing a data recovery plan, implementing regular security training, encrypting sensitive data, and defining incident response roles and responsibilities. By focusing on these areas, the plan aims to build a strong foundation that minimizes downtime, protects sensitive information, and ensures compliance with industry regulations such as GDPR and HIPAA.</p>
+                <p>This Preparation phase document provides actionable recommendations, detailed roles and responsibilities, and a communication strategy to streamline incident response efforts. By implementing these tailored recommendations, <strong>{{CompanyName9}}</strong> will be better equipped to handle cybersecurity incidents efficiently, reducing the potential impact on operations and maintaining the trust of customers and stakeholders.</p>
+            </div>
+            <div class="abstract-image">
+                <img src="https://static.wixstatic.com/media/2d2cfc_f8ddaf85f27c4d0eb918c662e2d60b14~mv2.png" alt="Incident Response Plan Steps">
+            </div>
+        </div>
+    </div>
+
+    <!-- Table of Contents Page -->
+    <div class="page toc-page">
+        <h5>{{CompanyName11}} Cyber Incident Response Plan</h5>
+        <hr>
+        <div class="header-container">
+            <div class="header-bottom">
+                <i class="fas fa-list-alt"></i>
+                <h2>Table of Contents</h2>
+            </div>
+        </div>
+        <ul>
+            <li><a href="#introduction"><i class="fas fa-info-circle"></i> Introduction </a></li>
+            <li><a href="#companyinfo"><i class="fas fa-building"></i> Business Information</a></li>
+            <li><a href="#plandetails"><i class="fas fa-cogs"></i> Plan Details</a></li>
+            <li><a href="#conclusion"><i class="fas fa-flag-checkered"></i> Conclusion</a></li>
+            <li><a href="#references"><i class="fas fa-book"></i> References</a></li>
+        </ul>
+        <img src="https://static.wixstatic.com/shapes/2d2cfc_b12d9129dc0a494b8a849b090c0c8df3.svg" alt="Your Image" class="toc-image">
+    </div>
+
+    <!-- Introduction Page -->
+    <div class="page intro-page" id="introduction">
+        <h5>{{userName6}} Cyber Incident Response Plan</h5>
+        <hr>
+        <div class="header-container">
+            <div class="header-bottom">
+                <i class="fas fa-info-circle"></i>
+                <h2>Introduction</h2>
+            </div>
+        </div>
+        
+    <p>An <span class="highlight">Incident Response Plan (IRP)</span> is a structured approach for managing and addressing security incidents. The primary goal of an IRP is to detect, respond to, and recover from incidents in a way that minimizes their impact on the organization.</p>
+
+    <img src="https://static.wixstatic.com/shapes/2d2cfc_f8cfc7debfec4d79b0af52c80630745b.svg" alt="IRP Steps Pic" class="introimg">
+
+    <p>The IRP is divided into several phases, each addressing a different aspect of incident response:</p>
+    <ul>
+        <li>
+            <span class="highlight">Preparation</span>: Proactive measures to identify potential threats and establish protocols for addressing them. This phase includes risk assessments, developing data recovery plans, security training for employees, and defining roles and responsibilities.
+        </li>
+        <li>
+            <span class="highlight">Identification</span>: This involves monitoring systems for anomalies and ensuring that the organization can quickly recognize threats.
+        </li>
+        <li>
+            <span class="highlight">Containment</span>: Limiting the spread of an incident to prevent further damage. This phase involves isolating affected systems and taking steps to mitigate the incident's impact.
+        </li>
+        <li>
+            <span class="highlight">Eradication</span>: Removing the cause of the incident and ensuring that affected systems are secure.
+        </li>
+        <li>
+            <span class="highlight">Recovery</span>: Restoring and validating system functionality to resume normal operations. This phase includes data recovery and system testing.
+        </li>
+        <li>
+            <span class="highlight">Lessons Learned</span>: Analyzing the incident to understand what happened and how it can be prevented in the future. This involves reviewing the response process, identifying areas for improvement, and updating the IRP accordingly.
+        </li>
+    </ul>
+
+    <p>Focusing on the Preparation phase, this document provides detailed recommendations and actionable steps to ensure that <strong>{{CompanyName10}}</strong> is well-prepared to handle potential cybersecurity incidents.</p>
+    </div>
+
+    <!-- Company Information Page -->
+    <div class="page companyinfo-page" id="companyinfo">
+        <h5>{{CompanyName2}} Cyber Incident Response Plan</h5>
+        <hr>
+        <div class="header-container">
+            <div class="header-bottom">
+                <i class="fas fa-building"></i>
+                <h2 class="section-title">Business Information</h2>
+            </div>
+        </div>
+        <p><strong>Business Name:</strong> {{CompanyName}}</p>
+        <p><strong>Email:</strong> {{Email}}</p>
+        <p><strong>Industry Type:</strong> {{IndustryType}}</p>
+        <p><strong>Number of Employees:</strong> {{NumOfEmp}}</p>
+        <p><strong>Types of Data Handled:</strong> {{TypesOfData}}</p>
+        <p><strong>Top Potential Risks or Threats:</strong> {{TopRisk}}</p>
+    </div>
+
+    <!-- Dynamic Plan Details Pages -->
+    {{incidentDetailsPages}}
+
+    <!-- Conclusion Page -->
+    <div class="page conc-page" id="conclusion">
+        <h5>{{userName4}} Cyber Incident Response Plan</h5>
+        <hr>
+        <div class="header-container">
+            <div class="header-bottom">
+                <i class="fas fa-flag-checkered"></i>
+                <h2>Conclusion</h2>
+            </div>
+        </div>
+        <img src="https://static.wixstatic.com/media/2d2cfc_8fa3d1c98aad47c0b2d3d65ebd19a9aa~mv2.png" alt="Conclusion" />
+        <p>This customized incident response plan generator is a powerful tool designed to streamline the preparation phase of your incident response strategy. By leveraging user input, it tailors the plan to meet the specific needs and requirements of your organization. This personalized approach ensures that your preparation activities are comprehensive, relevant, and aligned with your unique security posture.</p>
+        <p>By using this tool, you can effectively identify potential risks, define roles and responsibilities, and establish robust procedures for incident detection and response. This proactive preparation not only enhances your organization's readiness to handle security incidents but also minimizes potential damage and disruption.</p>
+        <p>We encourage you to regularly review and update your incident response plan, conduct training and drills, and stay informed about the latest best practices in incident response. For further assistance or questions, please contact LetsCyber at <a href="mailto:info@letscyber.ai">info@letscyber.ai</a>.</p>
+    </div>
+
+    <!-- References Page -->
+    <div class="page references-page" id="references">
+        <h5>{{userName5}} Cyber Incident Response Plan</h5>
+        <hr>
+        <div class="header-container">
+            <div class="header-bottom">
+                <i class="fas fa-book"></i>
+                <h2>References</h2>
+            </div>
+        </div>
+        <p>Here are the sources and references used in the preparation of this Incident Response Plan:</p>
+<ul>
+    <li><a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf" target="_blank">National Institute of Standards and Technology (NIST) Special Publication 800-61 Revision 2, Computer Security Incident Handling Guide</a>.</li>
+    <li><a href="https://www.iso.org/standard/60803.html" target="_blank">International Organization for Standardization (ISO) 27035:2016, Information Technology - Security Techniques - Incident Management</a>.</li>
+    <li><a href="https://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901" target="_blank">SANS Institute, Incident Handler's Handbook</a>.</li>
+    <li><a href="https://www.enisa.europa.eu/publications/good-practice-guide-for-incident-management" target="_blank">ENISA, Good Practice Guide for Incident Management</a>.</li>
+    <li>Other relevant and credible sources as applicable to the specific context and industry of the business.</li>
+</ul>
+        <p><center>&copy; 2024 LetsCyber. All rights reserved.</center></p>
+    </div>
+
+</body>
+</html>
+`;

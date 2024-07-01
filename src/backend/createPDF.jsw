@@ -1,0 +1,63 @@
+import { PDFCO_URL, getApiKeys } from 'backend/apiKeys';
+import { fetch } from 'wix-fetch';
+
+// Function to create a timeout promise
+function timeoutPromise(ms, promise) {
+    return new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+            reject(new Error("Request timed out"));
+        }, ms);
+        promise.then(
+            (res) => {
+                clearTimeout(timeoutId);
+                resolve(res);
+            },
+            (err) => {
+                clearTimeout(timeoutId);
+                reject(err);
+            }
+        );
+    });
+}
+
+// Function to make an API request with timeout
+function fetchWithTimeout(url, options, timeout = 30000) {
+    return timeoutPromise(timeout, fetch(url, options));
+}
+
+export async function createPDF(htmlContent) {
+    try {
+        const { PDFCO_API_KEY } = await getApiKeys();
+        console.log('API Key:', PDFCO_API_KEY);
+        console.log('PDF.co URL:', PDFCO_URL);
+        console.log('HTML Content:', htmlContent);
+
+        const response = await fetchWithTimeout(PDFCO_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': `${PDFCO_API_KEY}`
+            },
+            body: JSON.stringify({
+                html: htmlContent,
+                name: 'Incident Response Plan Preparation Phase by LetsCyber'
+            })
+        }, 30000); // 30 seconds timeout
+
+        console.log('Response Status:', response.status);
+
+        const data = await response.json();
+        console.log('Response Data:', data);
+
+        if (!response.ok) {
+            throw new Error(`PDF.co API error: ${JSON.stringify(data)}`);
+        }
+
+        return data.url; // The URL to the generated PDF
+    } catch (error) {
+        console.error('Error creating PDF:', error.message, error.stack);
+        throw new Error('Failed to create PDF');
+    }
+}
+
+

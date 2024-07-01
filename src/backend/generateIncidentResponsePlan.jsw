@@ -1,0 +1,45 @@
+import { OPENAI_URL, getApiKeys } from 'backend/apiKeys';
+import { fetch } from 'wix-fetch';
+
+export async function generateIncidentResponsePlan(userData) {
+    try {
+        const { OPENAI_API_KEY } = await getApiKeys();
+        const response = await fetch(OPENAI_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${OPENAI_API_KEY}`
+            },
+            body: JSON.stringify({
+                model: 'gpt-3.5-turbo',
+                messages: [
+                    { role: 'system', content: 'You are a helpful assistant.' },
+                    { 
+                        role: 'user', 
+                        content: `Generate a customized incident response plan for the preparation phase based on the following user data: ${JSON.stringify(userData)}. 
+                        The response should include the following sections: Overview, Key Considerations, and Recommendations. 
+                        Each section should be clearly marked with headings. Use HTML tags for formatting. 
+                        The Overview should provide a brief summary, Key Considerations should list important points, and Recommendations should include step-by-step instructions with priority levels.` 
+                    }
+                ],
+                max_tokens: 1500,
+                temperature: 0.5,  // Control randomness
+                top_p: 1.0,        // Use all the tokens
+                stop: ["</html>"]  // Define stop sequence if needed
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(`OpenAI API error: ${JSON.stringify(data)}`);
+        }
+
+        console.log('OpenAI response:', data); // Log the response data
+
+        return data.choices[0].message.content;
+    } catch (error) {
+        console.error(`Error generating incident response plan:`, error);
+        throw new Error('Failed to generate incident response plan');
+    }
+}

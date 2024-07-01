@@ -1,0 +1,11 @@
+// apiKeys.js
+import { getSecret } from 'wix-secrets-backend';
+
+export const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
+export const PDFCO_URL = 'https://api.pdf.co/v1/pdf/convert/from/html';
+
+export async function getApiKeys() {
+    const OPENAI_API_KEY = await getSecret('OPENAI_API_KEY');
+    const PDFCO_API_KEY = await getSecret('PDFCO_API_KEY');
+    return { OPENAI_API_KEY, PDFCO_API_KEY };
+}

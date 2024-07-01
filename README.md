@@ -41,7 +41,7 @@ LetsCyber is an open-source tool designed to help small and medium-sized busines
     ```
 
 ## Usage
-
+1. **Go for the website**: https://www.letscyber.tools/incidint-response-form
 1. **Fill out the Questionnaire**: Navigate to the questionnaire page and provide the required information.
 2. **Generate the Plan**: Submit the questionnaire to generate a customized Incident Response Plan.
 3. **Download the Report**: Once the plan is generated, download the report for further use.

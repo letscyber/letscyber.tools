@@ -24,8 +24,8 @@ LetsCyber is an open-source tool designed to help small and medium-sized busines
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/yourusername/letscyber.git
-    cd letscyber
+    git clone https://github.com/letscyber/letscyber.tools.git
+    cd letscyber.tools
     ```
 
 2. **Install Dependencies**
@@ -39,13 +39,6 @@ LetsCyber is an open-source tool designed to help small and medium-sized busines
     ```bash
     npm start
     ```
-
-### Deployment on Wix
-
-1. **Enable Velo (Developer Tools)** in your Wix site.
-2. **Create a new page** and add the necessary frontend code.
-3. **Set up data collections** and backend functions as needed.
-4. **Embed any third-party services** (like Google Analytics) for monitoring.
 
 ## Usage
 
@@ -69,4 +62,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-For any inquiries or support, please contact [support email].
+For any inquiries or support, please contact info@letscyber.tools 

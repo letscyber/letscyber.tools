@@ -1,45 +1,71 @@
-# Git Integration & Wix CLI <img align="left" src="https://user-images.githubusercontent.com/89579857/185785022-cab37bf5-26be-4f11-85f0-1fac63c07d3b.png">
+# LetsCyber <img align="left" src="https://static.wixstatic.com/media/2d2cfc_35852b2e3e2747ab8b7fba2bebee4139~mv2.png">
 
-This repo is part of Git Integration & Wix CLI, a set of tools that allows you to write, test, and publish code for your Wix site locally on your computer. 
+LetsCyber is an open-source tool designed to help small and medium-sized businesses create a customized Incident Response Plan focused on the preparation phase. Developed by a certified GCIH professional, LetsCyber leverages AI to guide users through essential steps to protect critical assets and ensure regulatory compliance.
 
-Connect your site to GitHub, develop in your favorite IDE, test your code in real time, and publish your site from the command line.
+## Features
 
-## Set up this repository in your IDE
-This repo is connected to a Wix site. That site tracks this repo's default branch. Any code committed and pushed to that branch from your local IDE appears on the site.
+- **Questionnaire-Based Planning**: Collects essential information through a comprehensive questionnaire.
+- **AI-Powered Analysis**: Uses AI to analyze inputs and generate a customized Incident Response Plan.
+- **User-Friendly Interface**: Easy-to-use interface designed for businesses with limited cybersecurity resources.
+- **Open Source**: Fully open-source, allowing contributions and improvements from the community.
+- **Downloadable Reports**: Generates detailed reports that can be downloaded and used for compliance and training purposes.
 
-Before getting started, make sure you have the following things installed:
-* [Git](https://git-scm.com/download)
-* [Node](https://nodejs.org/en/download/), version 14.8 or later.
-* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [yarn](https://yarnpkg.com/getting-started/install)
-* An SSH key [added to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+## Getting Started
 
-To set up your local environment and start coding locally, do the following:
+### Prerequisites
 
-1. Open your terminal and navigate to where you want to store the repo.
-1. Clone the repo by running `git clone <your-repository-url>`.
-1. Navigate to the repo's directory by running `cd <directory-name>`.
-1. Install the repo's dependencies by running `npm install` or `yarn install`.
-1. Install the Wix CLI by running `npm install -g @wix/cli` or `yarn global add @wix/cli`.  
-   Once you've installed the CLI globally, you can use it with any Wix site's repo.
+- Node.js
+- npm (Node Package Manager)
+- Wix account (if deploying on Wix)
 
-For more information, see [Setting up Git Integration & Wix CLI](https://support.wix.com/en/article/velo-setting-up-git-integration-wix-cli-beta).
+### Installation
 
-## Write Velo code in your IDE
-Once your repo is set up, you can write code in it as you would in any other non-Wix project. The repo's file structure matches the [public](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#public), [backend](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#backend), and [page code](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#page-code) sections in Editor X.
+1. **Clone the Repository**
 
-Learn more about [this repo's file structure](https://support.wix.com/en/article/velo-understanding-your-sites-github-repository-beta).
+    ```bash
+    git clone https://github.com/yourusername/letscyber.git
+    cd letscyber
+    ```
 
-## Test your code with the Local Editor
-The Local Editor allows you test changes made to your site in real time. The code in your local IDE is synced with the Local Editor, so you can test your changes before committing them to your repo. You can also change the site design in the Local Editor and sync it with your IDE.
+2. **Install Dependencies**
 
-Start the Local Editor by navigating to this repo's directory in your terminal and running `wix dev`.
+    ```bash
+    npm install
+    ```
 
-For more information, see [Working with the Local Editor](https://support.wix.com/en/article/velo-working-with-the-local-editor-beta).
+3. **Run the Application**
 
-## Preview and publish with the Wix CLI
-The Wix CLI is a tool that allows you to work with your site locally from your computer's terminal. You can use it to build a preview version of your site and publish it. You can also use the CLI to install [approved npm packages](https://support.wix.com/en/article/velo-working-with-npm-packages) to your site.
+    ```bash
+    npm start
+    ```
 
-Learn more about [working with the Wix CLI](https://support.wix.com/en/article/velo-working-with-the-wix-cli-beta).
+### Deployment on Wix
 
-## Invite contributors to work with you
-Git Integration & Wix CLI extends Editor X's [concurrent editing](https://support.wix.com/en/article/editor-x-about-concurrent-editing) capabilities. Invite other developers as collaborators on your [site](https://support.wix.com/en/article/inviting-people-to-contribute-to-your-site) and your [GitHub repo](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository). Multiple developers can work on a site's code at once.
+1. **Enable Velo (Developer Tools)** in your Wix site.
+2. **Create a new page** and add the necessary frontend code.
+3. **Set up data collections** and backend functions as needed.
+4. **Embed any third-party services** (like Google Analytics) for monitoring.
+
+## Usage
+
+1. **Fill out the Questionnaire**: Navigate to the questionnaire page and provide the required information.
+2. **Generate the Plan**: Submit the questionnaire to generate a customized Incident Response Plan.
+3. **Download the Report**: Once the plan is generated, download the report for further use.
+
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) to get started.
+
+1. **Fork the repository**
+2. **Create a new branch** (`git checkout -b feature/YourFeature`)
+3. **Commit your changes** (`git commit -m 'Add Your Feature'`)
+4. **Push to the branch** (`git push origin feature/YourFeature`)
+5. **Create a Pull Request**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries or support, please contact [support email].

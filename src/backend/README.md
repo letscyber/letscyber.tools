@@ -1,4 +1,4 @@
-# Incident Response Plan (IRP) Generator for Wix
+# Incident Response Plan (IRP) Generator
 
 This backend code automates the creation of customized Incident Response Plans (IRPs) for the **preparation** phase. It leverages OpenAI's language model (GPT-3.5-turbo) for content generation and PDF.co for professional PDF output. The project is designed to be integrated into Wix websites.
 

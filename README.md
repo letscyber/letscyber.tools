@@ -1,4 +1,4 @@
-# LetsCyber <img align="left" src="https://static.wixstatic.com/shapes/2d2cfc_2d85a265054c48ad912c130b1095e63d.svg" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc;">
+# LetsCyber <img align="left" src="https://static.wixstatic.com/shapes/2d2cfc_2d85a265054c48ad912c130b1095e63d.svg" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #ccc;">
 
 
 LetsCyber is an open-source tool designed to help small and medium-sized businesses create a customized Incident Response Plan focused on the preparation phase. Developed by a certified GCIH professional, LetsCyber leverages AI to guide users through essential steps to protect critical assets and ensure regulatory compliance.

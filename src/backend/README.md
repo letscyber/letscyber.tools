@@ -10,24 +10,6 @@ This backend code automates the creation of customized Incident Response Plans (
 * **PDF.co Integration:** Automatically generates polished, shareable PDFs.
 * **HTML/CSS Customization:** A template in `htmlTemplate.jsw` allows design control.
 
-## Prerequisites
-
-* **Wix Account:** The code uses Wix-specific features (`wix-secrets-backend`, `wix-fetch`).
-* **API Keys:**
-    * Obtain an OpenAI API key (`OPENAI_API_KEY`).
-    * Obtain a PDF.co API key (`PDFCO_API_KEY`).
-    * Store both keys securely as Wix secrets.
-
-## Installation & Setup
-
-1. **Clone Repository:**
-   ```bash
-   git clone <repository-url>
-
-2. **Install Dependencies:**
-
-This project uses the wix-fetch module, typically available within the Wix environment.
-
 ## Code Structure
 
 1. **apiKeys.jsw:** Securely fetches API keys.
@@ -43,7 +25,6 @@ This project uses the wix-fetch module, typically available within the Wix envir
 ## Customization
 1. **htmlTemplate.jsw:** Modify this file to adjust the look and feel of the generated PDF.
 2. **Prompt Engineering:** Refine the prompt sent to OpenAI in generateIncidentResponsePlan.jsw to influence the generated content.
-
 
 ## Error Handling
 The code checks for errors during API calls and provides basic logging. You may want to expand this for production environments.

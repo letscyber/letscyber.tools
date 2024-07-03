@@ -255,7 +255,7 @@ export const HTML_TEMPLATE = `
         <h2>Preparation Phase</h2>
         <p><strong>Generated for:</strong> {{userName1}}</p>
         <p class="tagline">Ensuring Preparedness and Resilience Against Cyber Threats</p>
-        <p class="date"><strong>\${formattedDate} | Version 1.0</strong></p>
+        <p class="date"><strong>\${formattedDate} | Version 1.0 (Beta) </strong></p>
     </div>
 
     <!-- Abstract Page -->

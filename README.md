@@ -17,7 +17,6 @@ LetsCyber is an open-source tool designed to help small and medium-sized busines
 
 - Node.js
 - npm (Node Package Manager)
-- Wix account (if deploying on Wix)
 
 ### 🛠️ Installation
 

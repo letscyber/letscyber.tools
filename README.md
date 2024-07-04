@@ -3,7 +3,7 @@
 
 LetsCyber is an open-source tool designed to help small and medium-sized businesses create a customized Incident Response Plan focused on the preparation phase. Developed by a certified GCIH professional, LetsCyber leverages AI to guide users through essential steps to protect critical assets and ensure regulatory compliance.
 
-## Features
+## 🚀 Features
 
 - **Questionnaire-Based Planning**: Collects essential information through a comprehensive questionnaire.
 - **AI-Powered Analysis**: Uses AI to analyze inputs and generate a customized Incident Response Plan.
@@ -13,13 +13,13 @@ LetsCyber is an open-source tool designed to help small and medium-sized busines
 
 ## Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
 
 - Node.js
 - npm (Node Package Manager)
 - Wix account (if deploying on Wix)
 
-### Installation
+### 🛠️ Installation
 
 1. **Clone the Repository**
 
@@ -40,13 +40,13 @@ LetsCyber is an open-source tool designed to help small and medium-sized busines
     npm start
     ```
 
-## Usage
+## 💻 Usage
 1. **Go for the website**: https://www.letscyber.tools/incidint-response-form
 1. **Fill out the Questionnaire**: Provide the required information.
 2. **Generate the Plan**: Submit the questionnaire to generate a customized Incident Response Plan.
 3. **Download the Report**: Once the plan is generated, download the report for further use.
 
-## Contributing
+## 🙌 Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) to get started.
 
@@ -56,10 +56,10 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 4. **Push to the branch** (`git push origin feature/YourFeature`)
 5. **Create a Pull Request**
 
-## License
+## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## 📞 Contact
 
 For any inquiries or support, please contact info@letscyber.tools 

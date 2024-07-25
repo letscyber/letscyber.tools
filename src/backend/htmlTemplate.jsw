@@ -375,7 +375,7 @@ export const HTML_TEMPLATE = `
         <img src="https://static.wixstatic.com/media/2d2cfc_8fa3d1c98aad47c0b2d3d65ebd19a9aa~mv2.png" alt="Conclusion" />
         <p>This customized incident response plan generator is a powerful tool designed to streamline the preparation phase of your incident response strategy. By leveraging user input, it tailors the plan to meet the specific needs and requirements of your organization. This personalized approach ensures that your preparation activities are comprehensive, relevant, and aligned with your unique security posture.</p>
         <p>By using this tool, you can effectively identify potential risks, define roles and responsibilities, and establish robust procedures for incident detection and response. This proactive preparation not only enhances your organization's readiness to handle security incidents but also minimizes potential damage and disruption.</p>
-        <p>We encourage you to regularly review and update your incident response plan, conduct training and drills, and stay informed about the latest best practices in incident response. For further assistance or questions, please contact LetsCyber at <a href="mailto:info@letscyber.ai">info@letscyber.ai</a>.</p>
+        <p>We encourage you to regularly review and update your incident response plan, conduct training and drills, and stay informed about the latest best practices in incident response. For further assistance or questions, please contact LetsCyber at <a href="mailto:info@letscyber.tools">info@letscyber.tools</a>.</p>
     </div>
 
     <!-- References Page -->
